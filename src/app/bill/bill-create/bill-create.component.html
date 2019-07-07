@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="card-body">
+    <form #billForm="ngForm" (submit)="onSubmit(billForm)">
+      <div class="form-group">
+        <h5 class="card-title">Bill - Create</h5>
+      </div>
+      <div class="form-group">
+        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="enteredId">
+        <input id="inputshopName" class="form-control" type="text" name="shopname" #shopname="ngModel"
+          [(ngModel)]="enteredShopName" placeholder="shop name" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input id="inputDateOfPurchase" class="form-control" type="text" name="purchaseDate" #purchaseDate="ngModel"
+            [(ngModel)]="enteredDate" placeholder="Date of Purchase" required>
+        </div>
+        <div class="form-group col-md-6">
+          <input id="inputCashier" class="form-control" type="text" name="Cashier" #Cashier="ngModel"
+            [(ngModel)]="enteredCashier" placeholder="Cashier Name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control" id="inputProCode" name="ProductCode" [(ngModel)]="enteredProductCode"
+            placeholder="Product Code">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" id="inputProName" name="ProductName" [(ngModel)]="enteredProductName"
+            placeholder="Product Name">
+        </div>
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control" id="inputProPrice" name="Price" [(ngModel)]="enteredPrice"
+            placeholder="Price">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control" id="inputQuantity" name="Quantity" [(ngModel)]="enteredQuantity"
+            placeholder="Quantity">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" id="inputTotalPrice" name="TotalPrice" [(ngModel)]="enteredTotalPrice"
+            placeholder="Total Price">
+        </div>
+        <div class="form-group col-md-3" style="text-align: center;">
+          <button id="btnProductAdd" type="button" class="btn btn-primary right" name="Add" (click)="onAddProduct()">Add</button>
+          <button id="btnProductClear" type="button" class="btn btn-primary right" name="Add"
+            (click)="onClearProduct()">Clear</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <input class="form-control" type="text" name="totalAmount" id="inputtotalAmount" placeholder="Total Amount"
+          #totalAmount [(ngModel)]="enterBillAmount">
+        </div>
+        <div class="form-group col-md-6"></div>
+        <div class="form-group col-md-3" style="text-align: center;">
+          <button type="submit" class="btn btn-primary right">Submit</button>
+          <button id="btnProductReset" type="button" class="btn btn-primary right" name="Reset"
+            (click)="resetForm(billForm)">Reset</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <table>
+            <tr *ngFor="let item of enteredProduct">
+              <td>{{item.ProductCode}}</td>
+              <td>{{item.ProductName}}</td>
+              <td>{{item.Price}}</td>
+              <td>{{item.Quantity}}</td>
+              <td>{{item.TotalPrice}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
