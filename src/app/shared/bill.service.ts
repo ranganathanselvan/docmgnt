@@ -9,7 +9,7 @@ import { Bill } from './bill.model';
   providedIn: 'root'
 })
 export class BillService {
-  selectedBill: Bill;
+  selectedBill = new Bill();
   bills: Bill[];
   readonly baseURL = 'http://localhost:3000/api/bills';
 

@@ -12,7 +12,9 @@ import { BillService } from '../../shared/bill.service';
 })
 export class BillCreateComponent {
   enteredId = '';
+  enteredBillType = '';
   enteredShopName = '';
+  enteredBillNo = '';
   enteredDate = '';
   enteredCashier = '';
   enteredProductCode = '';
@@ -22,6 +24,7 @@ export class BillCreateComponent {
   enteredTotalPrice = '';
   enterBillAmount = '';
   enteredProduct = [];
+  billTypes = ['Medical', 'Household', 'Family', 'Transport', 'Hotel', 'Entertainment']
 
   constructor(private billService: BillService, private toastr: ToastrService) { }
 
@@ -58,15 +61,19 @@ export class BillCreateComponent {
     this.billService.selectedBill.items = this.enteredProduct;
     this.billService.selectedBill.totalAmount = this.enterBillAmount;*/
     const obj = {
+      billtype: this.enteredBillType,
       shopname: this.enteredShopName,
-      purchaseDate: this.enteredDate,
-      Cashier: this.enteredCashier,
+      billno: this.enteredBillNo,
+      purchasedate: this.enteredDate,
+      cashier: this.enteredCashier,
       items: this.enteredProduct,
-      totalAmount: this.enterBillAmount
+      totalamount: this.enterBillAmount
     };
     this.billService.postBill(obj).subscribe((res) => {
       this.resetForm(form);
-      this.toastr.success('Bill Saved Successfully', 'Success!');
+      this.toastr.success('Bill Saved Successfully', 'Success!', {
+        positionClass: 'toast-top-center'
+      });
     });
   }
 
@@ -76,11 +83,13 @@ export class BillCreateComponent {
     }
     this.billService.selectedBill = {
       id: '',
+      billtype: '',
       shopname: '',
-      purchaseDate: '',
-      Cashier: '',
+      billno: '',
+      purchasedate: '',
+      cashier: '',
       items: [],
-      totalAmount: ''
+      totalamount: ''
     };
     this.onClearProduct();
   }
