@@ -1,8 +1,11 @@
 export class Bill {
   id: string;
+  billtype: string;
   shopname: string;
-  purchaseDate: string;
-  Cashier: string;
+  billno: string;
+  purchasedate: string;
+  cashier: string;
   items: string[] = [];
-  totalAmount: string;
+  totalamount: string;
+
 }
