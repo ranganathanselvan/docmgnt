@@ -24,7 +24,7 @@ export class BillCreateComponent {
   enteredTotalPrice = '';
   enterBillAmount = '';
   enteredProduct = [];
-  billTypes = ['Medical', 'Household', 'Family', 'Transport', 'Hotel', 'Entertainment']
+  billTypes = ['Medical', 'Household', 'Family', 'Transport', 'Hotel', 'Entertainment'];
 
   constructor(private billService: BillService, private toastr: ToastrService) { }
 
