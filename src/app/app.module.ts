@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { CreateIncomeComponent } from './income/income-create/income-create.component';
 import { ExpenseCreateComponent } from './expense/expense-create/expense-create.component';
 import { NavBarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavBarComponent } from './navbar/navbar.component';
     NavBarComponent,
     BillCreateComponent,
     CreateIncomeComponent,
-    ExpenseCreateComponent
+    ExpenseCreateComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { NavBarComponent } from './navbar/navbar.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      {path: '', component: HomeComponent},
       {path: 'Bill', component: BillCreateComponent},
       {path: 'Income', component: CreateIncomeComponent},
       {path: 'Expense', component: ExpenseCreateComponent}
