@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BillCreateComponent } from './bill/bill-create/bill-create.component';
+import { BillViewComponent } from './bill/bill-view/bill-view.component';
 import { HeaderComponent } from './header/header.component';
 import { CreateIncomeComponent } from './income/income-create/income-create.component';
 import { ExpenseCreateComponent } from './expense/expense-create/expense-create.component';
@@ -22,6 +23,7 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     NavBarComponent,
     BillCreateComponent,
+    BillViewComponent,
     CreateIncomeComponent,
     ExpenseCreateComponent,
     HomeComponent
@@ -34,6 +36,7 @@ import { HomeComponent } from './home/home.component';
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
       {path: 'Bill', component: BillCreateComponent},
+      {path: 'Bill/show', component: BillViewComponent},
       {path: 'Income', component: CreateIncomeComponent},
       {path: 'Expense', component: ExpenseCreateComponent}
     ]),

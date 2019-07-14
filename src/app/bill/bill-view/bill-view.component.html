@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">
+
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <td>Bill Type</td>
+          <td>Shop Name</td>
+          <td>Purchase Date</td>
+          <td>Total Amount</td>
+          <td>Item Count</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bill of billData">
+          <td>{{ bill.billtype}}</td>
+          <td>{{ bill.shopname}}</td>
+          <td>{{ bill.purchasedate}}</td>
+          <td>{{ bill.totalamount}}</td>
+          <td>{{ bill.items.length}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer"></div>
+</div>

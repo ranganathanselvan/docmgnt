@@ -18,4 +18,8 @@ export class BillService {
   postBill(obj: any) {
     return this.http.post(this.baseURL, obj);
   }
+
+  getAllBill() {
+    return this.http.get(this.baseURL);
+  }
 }
