@@ -1,11 +1,9 @@
 <div class="card">
   <div class="card-header">
-    <table>
-      <tr>
-        <td>Create Bill | </td>
-        <td><a routerLink="/Bill/show">Show Bill</a></td>
-      </tr>
-    </table>
+    <nav class="nav">
+      <a class="nav-link" routerLink="/Bill">Create Bill</a>
+      <a class="nav-link" routerLink="/Bill/show">Show Bill</a>
+    </nav>
   </div>
   <div class="card-body">
     <form #billForm="ngForm" (submit)="onSubmit(billForm)">
