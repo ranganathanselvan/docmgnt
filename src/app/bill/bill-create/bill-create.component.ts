@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { BillService } from '../../shared/bill.service';
 
+declare var $: any;  // Declaring $ as a variable so that we can use it to access jQuery
 
 @Component({
   selector: 'app-bill-create',
   templateUrl: './bill-create.component.html',
   providers: [BillService]
 })
-export class BillCreateComponent {
+export class BillCreateComponent implements OnInit {
   enteredId = '';
   enteredBillType = '';
   enteredShopName = '';
@@ -25,8 +26,17 @@ export class BillCreateComponent {
   enterBillAmount = '';
   enteredProduct = [];
   billTypes = ['Medical', 'Household', 'Family', 'Transport', 'Hotel', 'Entertainment'];
+  @ViewChild('purchaseDate', { static: false }) purchaseDate: ElementRef;
 
   constructor(private billService: BillService, private toastr: ToastrService) { }
+
+  ngOnInit(): void {
+    $(
+      function () {
+        $('#inputDateOfPurchase').datepicker({ dateFormat: 'dd/mm/yy' });
+      }
+    );
+  }
 
   onAddProduct() {
     let productObj = {
@@ -60,6 +70,7 @@ export class BillCreateComponent {
     this.billService.selectedBill.Cashier = this.enteredCashier;
     this.billService.selectedBill.items = this.enteredProduct;
     this.billService.selectedBill.totalAmount = this.enterBillAmount;*/
+    let purDate = this.purchaseDate.nativeElement.value;
     const obj = {
       billtype: this.enteredBillType,
       shopname: this.enteredShopName,
