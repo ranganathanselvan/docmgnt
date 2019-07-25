@@ -25,7 +25,7 @@ export class BillCreateComponent implements OnInit {
   enteredTotalPrice = '';
   enterBillAmount = '';
   enteredProduct = [];
-  billTypes = ['Medical', 'Household', 'Family', 'Transport', 'Hotel', 'Entertainment'];
+  billTypes = ['Medical', 'Household', 'Family', 'Transport', 'Hotel', 'Entertainment', 'Dresses'];
   @ViewChild('purchaseDate', { static: false }) purchaseDate: ElementRef;
 
   constructor(private billService: BillService, private toastr: ToastrService) { }
@@ -70,7 +70,8 @@ export class BillCreateComponent implements OnInit {
     this.billService.selectedBill.Cashier = this.enteredCashier;
     this.billService.selectedBill.items = this.enteredProduct;
     this.billService.selectedBill.totalAmount = this.enterBillAmount;*/
-    let purDate = this.purchaseDate.nativeElement.value;
+    const purDate = this.purchaseDate.nativeElement.value;
+    this.enteredDate = purDate;
     const obj = {
       billtype: this.enteredBillType,
       shopname: this.enteredShopName,
