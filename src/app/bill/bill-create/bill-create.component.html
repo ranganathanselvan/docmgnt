@@ -8,10 +8,19 @@
   <div class="card-body">
     <form #billForm="ngForm" (submit)="onSubmit(billForm)">
 
-      <div class="form-group">
-        <select class="form-control" id="BillType" [(ngModel)]="enteredBillType" [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let bill of billTypes.sort()" [value]="bill">{{bill}}</option>
-        </select>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <select class="form-control" id="BillType" [(ngModel)]="enteredBillType"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let bill of billTypes.sort()" [value]="bill">{{bill}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <select class="form-control" id="paymentMode" [(ngModel)]="enteredPaymentMode"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let mode of paymentMode.sort()" [value]="mode">{{mode}}</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
         <input type="hidden" name="_id" [(ngModel)]="enteredId">
@@ -24,8 +33,8 @@
             placeholder="Bill No" required>
         </div>
         <div class="form-group col-md-4">
-          <input id="inputDateOfPurchase" class="form-control" type="text" #purchaseDate name="purchaseDate" [(ngModel)]="enteredDate"
-            placeholder="Date of Purchase" required>
+          <input id="inputDateOfPurchase" class="form-control" type="text" #purchaseDate name="purchaseDate"
+            [(ngModel)]="enteredDate" placeholder="Date of Purchase" required>
         </div>
         <div class="form-group col-md-4">
           <input id="inputCashier" class="form-control" type="text" name="Cashier" [(ngModel)]="enteredCashier"
@@ -43,13 +52,13 @@
         </div>
         <div class="form-group col-md-3">
           <input type="text" class="form-control" id="inputProPrice" name="Price" [(ngModel)]="enteredPrice"
-            placeholder="Price">
+            placeholder="Price" (ngModelChange)="calculateProductTotalPrice()">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-3">
           <input type="text" class="form-control" id="inputQuantity" name="Quantity" [(ngModel)]="enteredQuantity"
-            placeholder="Quantity">
+            placeholder="Quantity" (ngModelChange)="calculateProductTotalPrice()">
         </div>
         <div class="form-group col-md-6">
           <input type="text" class="form-control" id="inputTotalPrice" name="TotalPrice" [(ngModel)]="enteredTotalPrice"

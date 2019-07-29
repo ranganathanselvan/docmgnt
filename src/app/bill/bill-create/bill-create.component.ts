@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { BillService } from '../../shared/bill.service';
+import { Bill } from '../../shared/bill.model';
 
 declare var $: any;  // Declaring $ as a variable so that we can use it to access jQuery
 
@@ -14,6 +15,7 @@ declare var $: any;  // Declaring $ as a variable so that we can use it to acces
 export class BillCreateComponent implements OnInit {
   enteredId = '';
   enteredBillType = '';
+  enteredPaymentMode = '';
   enteredShopName = '';
   enteredBillNo = '';
   enteredDate = '';
@@ -25,7 +27,9 @@ export class BillCreateComponent implements OnInit {
   enteredTotalPrice = '';
   enterBillAmount = '';
   enteredProduct = [];
+  billObj: Bill = new Bill();
   billTypes = ['Medical', 'Household', 'Family', 'Transport', 'Hotel', 'Entertainment', 'Dresses'];
+  paymentMode = ['Credit Card', 'Debit Card', 'Cash'];
   @ViewChild('purchaseDate', { static: false }) purchaseDate: ElementRef;
 
   constructor(private billService: BillService, private toastr: ToastrService) { }
@@ -44,6 +48,7 @@ export class BillCreateComponent implements OnInit {
       Price: this.enteredPrice, Quantity: this.enteredQuantity, TotalPrice: this.enteredTotalPrice
     };
     this.enteredProduct.push(productObj);
+    this.enterBillAmount = String(Number(this.enteredTotalPrice) + Number(this.enterBillAmount || '0'));
     productObj = {
       ProductCode: '', ProductName: '',
       Price: '', Quantity: '', TotalPrice: ''
@@ -65,23 +70,19 @@ export class BillCreateComponent implements OnInit {
   }
 
   onSubmit(form?: NgForm) {
-    /*this.billService.selectedBill.shopname = this.enteredShopName;
-    this.billService.selectedBill.purchaseDate = this.enteredDate;
-    this.billService.selectedBill.Cashier = this.enteredCashier;
-    this.billService.selectedBill.items = this.enteredProduct;
-    this.billService.selectedBill.totalAmount = this.enterBillAmount;*/
     const purDate = this.purchaseDate.nativeElement.value;
-    this.enteredDate = purDate;
-    const obj = {
-      billtype: this.enteredBillType,
-      shopname: this.enteredShopName,
-      billno: this.enteredBillNo,
-      purchasedate: this.enteredDate,
-      cashier: this.enteredCashier,
-      items: this.enteredProduct,
-      totalamount: this.enterBillAmount
-    };
-    this.billService.postBill(obj).subscribe((res) => {
+    const date = purDate.split('/');
+
+    this.billObj.billtype = this.enteredBillType;
+    this.billObj.shopname = this.enteredShopName;
+    this.billObj.paymentmode = this.enteredPaymentMode;
+    this.billObj.billno = this.enteredBillNo;
+    this.billObj.purchasedate = new Date(date[1] + '/' + date[0] + '/' + date[2]);
+    this.billObj.cashier = this.enteredCashier;
+    this.billObj.items = this.enteredProduct;
+    this.billObj.totalamount = this.enterBillAmount;
+
+    this.billService.postBill(this.billObj).subscribe((res) => {
       this.resetForm(form);
       this.toastr.success('Bill Saved Successfully', 'Success!', {
         positionClass: 'toast-top-center'
@@ -96,13 +97,20 @@ export class BillCreateComponent implements OnInit {
     this.billService.selectedBill = {
       id: '',
       billtype: '',
+      paymentmode: '',
       shopname: '',
       billno: '',
-      purchasedate: '',
+      purchasedate: new Date(),
       cashier: '',
       items: [],
       totalamount: ''
     };
     this.onClearProduct();
+  }
+
+  calculateProductTotalPrice() {
+    if (this.enteredPrice !== '' && this.enteredQuantity !== '') {
+      this.enteredTotalPrice = String(Number(this.enteredPrice) * Number(this.enteredQuantity));
+    }
   }
 }

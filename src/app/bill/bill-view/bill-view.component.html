@@ -21,7 +21,7 @@
         <tr *ngFor="let bill of billData; let i = index;">
           <td>{{ bill.billtype}}</td>
           <td>{{ bill.shopname}}</td>
-          <td>{{ bill.purchasedate}}</td>
+          <td>{{ bill.purchasedate | date: 'dd/MM/yyyy'}}</td>
           <td>{{ bill.totalamount}}</td>
           <td>{{ bill.items.length}}</td>
           <td><button type="button" class="btn btn-primary" (click)="getRowIndex(i)" data-toggle="modal"
@@ -51,6 +51,9 @@
         </button>
       </div>
       <div class="modal-body">
+        <div>
+            <h6>Total Amount: {{selectedBill.totalamount}}</h6>
+        </div>
         <table class="table">
           <thead class="table-light">
             <tr>
@@ -59,22 +62,50 @@
               <th>Price</th>
               <th>Quantity</th>
               <th>Total Price</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of selectedBill.items">
+            <tr *ngFor="let item of selectedBill.items; let j = index">
               <td>{{item.ProductCode}}</td>
               <td>{{item.ProductName}}</td>
               <td>{{item.Price}}</td>
               <td>{{item.Quantity}}</td>
               <td>{{item.TotalPrice}}</td>
+              <td>
+                <a class="btn" (click)="deleteBillItem(j)">
+                  <img src="../../../assets/img/icon_blue_delete.png" width="20" height="20" /></a>
+                <a class="btn" (click)="editselectedBillItem(j)">
+                  <img src="../../../assets/img/icon_blue_edit.png" width="20" height="20" /></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="AddProductItem" class="form-group">
+        <table>
+          <tbody>
+            <tr>
+              <td><input type="text" name="productCode" class="form-control" [(ngModel)]="enteredProductCode"
+                  placeholder="Product Code"></td>
+              <td><input type="text" name="productName" class="form-control" [(ngModel)]="enteredProductName"
+                  placeholder="Product Name"></td>
+              <td><input type="text" name="productPrice" class="form-control" [(ngModel)]="enteredPrice"
+                  placeholder="Price" (ngModelChange)="calculateProductTotalPrice()"></td>
+              <td><input type="text" name="productQuantity" class="form-control" [(ngModel)]="enteredQuantity"
+                  placeholder="Quantity" (ngModelChange)="calculateProductTotalPrice()"></td>
+              <td><input type="text" name="totalPrice" class="form-control" [(ngModel)]="enteredTotalPrice"
+                  placeholder="Total Price" ></td>
+              <td><a (click)="addBillItem()"><img src="../../../assets/img/icon_blue_add.png" width="20"
+                    height="20" /></a></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="updateSelectedBill(selectedBill)">Save changes</button>
       </div>
     </div>
   </div>

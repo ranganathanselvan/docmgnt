@@ -3,27 +3,26 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import { Bill } from './bill.model';
+import { Income } from './income.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BillService {
-  selectedBill: Bill = new Bill();
+export class IncomeService {
 
-  readonly baseURL = 'http://localhost:3000/api/bills';
+  readonly baseURL = 'http://localhost:3000/api/incomes';
 
   constructor(private http: HttpClient) { }
 
-  postBill(obj: any) {
+  postIncome(obj: any) {
     return this.http.post(this.baseURL, obj);
   }
 
-  getAllBill() {
+  getAllIncome() {
     return this.http.get(this.baseURL);
   }
 
-  putBillById(obj: any, id: string) {
+  putIncomeById(obj: any, id: string) {
     return this.http.put(this.baseURL + '?id=' + id, obj);
   }
 }
