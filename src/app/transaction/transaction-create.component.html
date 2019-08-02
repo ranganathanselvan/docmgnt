@@ -1,0 +1,63 @@
+<div class="card">
+  <div class="card-header">Create Income</div>
+  <div class="card-body">
+    <form #transactionForm="ngForm" (submit)="onSubmit(transactionForm)">
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <select class="form-control" id="TransactionType" [(ngModel)]="selectedTransactionType"
+              [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let trans of transactionTypes.sort()" [value]="trans">{{trans}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="inputTransDesc" name="TransDesc"
+              [(ngModel)]="enteredTransDesc" placeholder="Transaction Description">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="inputTransDate" #TransDate name="TransDate"
+              [(ngModel)]="enteredTransDate" placeholder="Transaction Date">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="inputTransAmount" name="TransAmount"
+              [(ngModel)]="enteredTransAmount" placeholder="Transaction Amount">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="inputTransComment" name="TransComment"
+              [(ngModel)]="enteredTransComment" placeholder="Transaction Comment">
+          </div>
+          <div class="form-group">
+            <div class="col-md-3 float-left"><button type="submit" class="btn btn-primary">Submit</button></div>
+            <div class="col-md-3 float-right"><button type="button" class="btn btn-primary"
+                (click)="resetForm(transactionForm)">Reset</button></div>
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <table class="table">
+            <thead class="table-light">
+              <tr>
+                <th>Trans Type</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of transactionData">
+                <td>{{item.transactiontype}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.date | date: 'dd/MM/yyyy'}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.balance}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="card-footer"></div>
+</div>
