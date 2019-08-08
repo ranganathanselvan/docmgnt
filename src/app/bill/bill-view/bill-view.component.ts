@@ -19,14 +19,28 @@ export class BillViewComponent implements OnInit {
   enteredQuantity = '';
   enteredTotalPrice = '';
   selectedIndex = '';
+  config: any;
+  collection = { count: 0, data: [] };
 
   constructor(private billService: BillService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.billService.getAllBill().subscribe((res) => {
       this.billData = Object.keys(res).map(i => res[i]);
+      this.collection.count = this.billData.length;
+      this.collection.data = this.billData;
+
+      this.config = {
+        itemsPerPage: 5,
+        currentPage: 1,
+        totalItems: this.collection.count
+      };
       console.log(JSON.stringify(res));
     });
+  }
+
+  pageChanged(event) {
+    this.config.currentPage = event;
   }
 
   getRowIndex(index) {

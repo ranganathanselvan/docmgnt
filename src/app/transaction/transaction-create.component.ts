@@ -22,6 +22,8 @@ export class CreateTransactionComponent implements OnInit {
   enteredTransComment = '';
   transactionData = new Array();
   transObj: Transaction = new Transaction();
+  config: any;
+  collection = { count: 0, data: [] };
 
   @ViewChild('TransDate', { static: false }) TransDate: ElementRef;
   constructor(private transService: TransactionService, private toastr: ToastrService) { }
@@ -38,9 +40,22 @@ export class CreateTransactionComponent implements OnInit {
   loadAllTrans() {
     this.transService.getAllTransaction().subscribe((res) => {
       this.transactionData = Object.keys(res).map(i => res[i]);
+      this.collection.count = this.transactionData.length;
+      this.collection.data = this.transactionData;
+
+      this.config = {
+        itemsPerPage: 5,
+        currentPage: 1,
+        totalItems: this.collection.count
+      };
       console.log(JSON.stringify(res));
     });
   }
+
+  pageChanged(event) {
+    this.config.currentPage = event;
+  }
+
   onSubmit(form?: NgForm) {
     const inDate = this.TransDate.nativeElement.value;
     const date = inDate.split('/');
