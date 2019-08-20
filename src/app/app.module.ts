@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,9 @@ import { BillViewComponent } from './bill/bill-view/bill-view.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { CreateTransactionComponent } from './transaction/transaction-create.component';
+import { SalaryCreateComponent } from './salary/salary-create/salary-create.component';
+import { SalaryDetailsComponent } from './salary/salary-details/salary-details.component';
+import { SalaryViewComponent } from './salary/salary-view/salary-view.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { CreateTransactionComponent } from './transaction/transaction-create.com
     BillCreateComponent,
     BillViewComponent,
     HomeComponent,
-    CreateTransactionComponent
+    CreateTransactionComponent,
+    SalaryCreateComponent,
+    SalaryDetailsComponent,
+    SalaryViewComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,10 @@ import { CreateTransactionComponent } from './transaction/transaction-create.com
       { path: '', component: HomeComponent },
       { path: 'Bill', component: BillCreateComponent },
       { path: 'Bill/show', component: BillViewComponent },
-      { path: 'Transaction', component: CreateTransactionComponent }
+      { path: 'Transaction', component: CreateTransactionComponent },
+      { path: 'Salary', component: SalaryCreateComponent },
+      { path: 'Salary/view', component: SalaryViewComponent },
+      { path: 'Salary/details', component: SalaryDetailsComponent },
     ]),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added

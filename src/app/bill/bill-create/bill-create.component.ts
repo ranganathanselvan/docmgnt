@@ -7,10 +7,16 @@ import { Bill } from '../../shared/bill.model';
 
 declare var $: any;  // Declaring $ as a variable so that we can use it to access jQuery
 
+
 @Component({
   selector: 'app-bill-create',
   templateUrl: './bill-create.component.html',
-  providers: [BillService]
+  providers: [BillService],
+  styles: [`
+    .btn-margin{
+      margin: 5px;
+    }
+  `]
 })
 export class BillCreateComponent implements OnInit {
   enteredId = '';
@@ -28,7 +34,7 @@ export class BillCreateComponent implements OnInit {
   enterBillAmount = '';
   enteredProduct = [];
   billObj: Bill = new Bill();
-  billTypes = ['Medical', 'Household', 'Family', 'Transport', 'Hotel', 'Entertainment', 'Dresses'];
+  billTypes = ['Medical', 'Household', 'Family', 'Transport', 'Hotel', 'Entertainment', 'Dresses', 'Saravana Stores'];
   paymentMode = ['Credit Card', 'Debit Card', 'Cash'];
   @ViewChild('purchaseDate', { static: false }) purchaseDate: ElementRef;
 

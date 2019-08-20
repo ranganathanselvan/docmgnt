@@ -41,7 +41,7 @@
             placeholder="Cashier Name">
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row bg-light">
         <div class="form-group col-md-3">
           <input type="text" class="form-control" id="inputProCode" name="ProductCode" [(ngModel)]="enteredProductCode"
             placeholder="Product Code">
@@ -55,7 +55,7 @@
             placeholder="Price" (ngModelChange)="calculateProductTotalPrice()">
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row bg-light">
         <div class="form-group col-md-3">
           <input type="text" class="form-control" id="inputQuantity" name="Quantity" [(ngModel)]="enteredQuantity"
             placeholder="Quantity" (ngModelChange)="calculateProductTotalPrice()">
@@ -65,22 +65,10 @@
             placeholder="Total Price">
         </div>
         <div class="form-group col-md-3" style="text-align: center;">
-          <button id="btnProductAdd" type="button" class="btn btn-primary right" name="Add"
+          <button id="btnProductAdd" type="button" class="btn btn-outline-primary btn-sm btn-margin" name="Add"
             (click)="onAddProduct()">Add</button>
-          <button id="btnProductClear" type="button" class="btn btn-primary right" name="Clear"
+          <button id="btnProductClear" type="button" class="btn btn-outline-primary btn-sm btn-margin" name="Clear"
             (click)="onClearProduct()">Clear</button>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-3">
-          <input class="form-control" type="text" name="totalamount" id="inputtotalAmount" placeholder="Total Amount"
-            [(ngModel)]="enterBillAmount">
-        </div>
-        <div class="form-group col-md-6"></div>
-        <div class="form-group col-md-3" style="text-align: center;">
-          <button type="submit" class="btn btn-primary right">Submit</button>
-          <button id="btnProductReset" type="button" class="btn btn-primary right" name="Reset"
-            (click)="resetForm(billForm)">Reset</button>
         </div>
       </div>
       <div class="form-row">
@@ -96,6 +84,13 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="form-group col-md-3">
+          <input class="form-control" type="text" name="totalamount" id="inputtotalAmount" placeholder="Total Amount"
+            [(ngModel)]="enterBillAmount">
+          <button type="submit" class="btn btn-primary btn-margin btn-block">Submit</button>
+          <button id="btnProductReset" type="button" class="btn btn-primary btn-margin btn-block" name="Reset"
+            (click)="resetForm(billForm)">Reset</button>
         </div>
       </div>
     </form>

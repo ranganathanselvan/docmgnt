@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-header">
+    <nav class="nav">
+      <a class="nav-link" routerLink="/Salary">Salary</a>
+      <a class="nav-link" routerLink="/Salary/view">View Salary</a>
+    </nav>
+  </div>
+  <div class="card-body">
+    <div class="form-row">
+      <div class="form-group col-6">
+        <select class="form-control" id="SelectMonth" [(ngModel)]="selectedMonth" [ngModelOptions]="{standalone: true}">
+          <option>---Select Month---</option>
+          <option *ngFor="let month of monthList" [value]="month">{{month}}</option>
+        </select>
+      </div>
+      <div class="form-group col-6">
+        <select class="form-control" id="SelectYear" [(ngModel)]="selectedYear" [ngModelOptions]="{standalone: true}">
+          <option>---Select Year---</option>
+          <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-6">
+        <fieldset>
+          <legend>Earnings</legend>
+          <div *ngFor="let earn of earnings; let i = index;">
+            <div class="col-7 float-left">
+              <h5><label for="earnings_{{i}}">{{ earn.type }}</label></h5>
+            </div>
+            <div class="col-4 float-right"><input type="number" id="earnings_{{i}}" class="form-control"
+                placeholder="{{earn.type}}" [(ngModel)]="earn.value"></div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="form-group col-6">
+        <fieldset>
+          <legend>Detections</legend>
+          <div *ngFor="let det of detections; let j = index;">
+            <div class="col-7 float-left">
+              <h5><label for="detections_{{j}}">{{ det.type }}</label></h5>
+            </div>
+            <div class="col-4 float-right"><input type="number" id="detections_{{j}}" class="form-control"
+                placeholder="{{det.type}}" [(ngModel)]="det.value"></div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    </div>
+  </div>
+  <div class="card-footer"></div>
+</div>
