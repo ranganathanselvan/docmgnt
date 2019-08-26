@@ -18,13 +18,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let bill of billData | paginate: config; let i = index;">
+        <tr *ngFor="let bill of billData | paginate: { itemsPerPage: count, currentPage: p }; let i = index;">
           <td>{{ bill.billtype}}</td>
           <td>{{ bill.shopname}}</td>
           <td>{{ bill.purchasedate | date: 'dd/MM/yyyy'}}</td>
           <td>{{ bill.totalamount}}</td>
           <td>{{ bill.items.length}}</td>
-          <td><button type="button" class="btn btn-primary" (click)="getRowIndex(i)" data-toggle="modal"
+          <td><button type="button" class="btn btn-primary btn-sm" (click)="getRowIndex(i)" data-toggle="modal"
               data-target="#showBillModal">View</button></td>
         </tr>
       </tbody>
