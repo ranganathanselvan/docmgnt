@@ -1,34 +1,47 @@
 <div class="card">
+  <div class="card-header">
+    <nav class="nav">
+      <a class="nav-link" routerLink="/Bill">Create Bill</a>
+      <a class="nav-link" routerLink="/Bill/show">Show Bill</a>
+    </nav>
+  </div>
   <div class="card-body">
     <form #billForm="ngForm" (submit)="onSubmit(billForm)">
-      <div class="form-group">
-        <h5 class="card-title">Bill - Create</h5>
-      </div>
-      <div class="form-group">
-        <select class="form-control" id="BillType" [(ngModel)]="enteredBillType">
-          <option *ngFor="let bill of billTypes.sort()" [value]="bill">{{bill}}</option>
-        </select>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <select class="form-control" id="BillType" [(ngModel)]="enteredBillType"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let bill of billTypes.sort()" [value]="bill">{{bill}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <select class="form-control" id="paymentMode" [(ngModel)]="enteredPaymentMode"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let mode of paymentMode.sort()" [value]="mode">{{mode}}</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
         <input type="hidden" name="_id" [(ngModel)]="enteredId">
-        <input id="inputshopName" class="form-control" type="text" name="shopname"
-          [(ngModel)]="enteredShopName" placeholder="shop name" required>
+        <input id="inputshopName" class="form-control" type="text" name="shopname" [(ngModel)]="enteredShopName"
+          placeholder="shop name" required>
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <input id="inputBillNo" class="form-control" type="text" name="billno"
-            [(ngModel)]="enteredBillNo" placeholder="Bill No" required>
+          <input id="inputBillNo" class="form-control" type="text" name="billno" [(ngModel)]="enteredBillNo"
+            placeholder="Bill No" required>
         </div>
         <div class="form-group col-md-4">
-          <input id="inputDateOfPurchase" class="form-control" type="text" name="purchaseDate"
+          <input id="inputDateOfPurchase" class="form-control" type="text" #purchaseDate name="purchaseDate"
             [(ngModel)]="enteredDate" placeholder="Date of Purchase" required>
         </div>
         <div class="form-group col-md-4">
-          <input id="inputCashier" class="form-control" type="text" name="Cashier"
-            [(ngModel)]="enteredCashier" placeholder="Cashier Name">
+          <input id="inputCashier" class="form-control" type="text" name="Cashier" [(ngModel)]="enteredCashier"
+            placeholder="Cashier Name">
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row bg-light">
         <div class="form-group col-md-3">
           <input type="text" class="form-control" id="inputProCode" name="ProductCode" [(ngModel)]="enteredProductCode"
             placeholder="Product Code">
@@ -39,35 +52,23 @@
         </div>
         <div class="form-group col-md-3">
           <input type="text" class="form-control" id="inputProPrice" name="Price" [(ngModel)]="enteredPrice"
-            placeholder="Price">
+            placeholder="Price" (ngModelChange)="calculateProductTotalPrice()">
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row bg-light">
         <div class="form-group col-md-3">
           <input type="text" class="form-control" id="inputQuantity" name="Quantity" [(ngModel)]="enteredQuantity"
-            placeholder="Quantity">
+            placeholder="Quantity" (ngModelChange)="calculateProductTotalPrice()">
         </div>
         <div class="form-group col-md-6">
           <input type="text" class="form-control" id="inputTotalPrice" name="TotalPrice" [(ngModel)]="enteredTotalPrice"
             placeholder="Total Price">
         </div>
         <div class="form-group col-md-3" style="text-align: center;">
-          <button id="btnProductAdd" type="button" class="btn btn-primary right" name="Add"
+          <button id="btnProductAdd" type="button" class="btn btn-outline-primary btn-sm btn-margin" name="Add"
             (click)="onAddProduct()">Add</button>
-          <button id="btnProductClear" type="button" class="btn btn-primary right" name="Clear"
+          <button id="btnProductClear" type="button" class="btn btn-outline-primary btn-sm btn-margin" name="Clear"
             (click)="onClearProduct()">Clear</button>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-3">
-          <input class="form-control" type="text" name="totalamount" id="inputtotalAmount" placeholder="Total Amount"
-            [(ngModel)]="enterBillAmount">
-        </div>
-        <div class="form-group col-md-6"></div>
-        <div class="form-group col-md-3" style="text-align: center;">
-          <button type="submit" class="btn btn-primary right">Submit</button>
-          <button id="btnProductReset" type="button" class="btn btn-primary right" name="Reset"
-            (click)="resetForm(billForm)">Reset</button>
         </div>
       </div>
       <div class="form-row">
@@ -84,7 +85,15 @@
             </tbody>
           </table>
         </div>
+        <div class="form-group col-md-3">
+          <input class="form-control" type="text" name="totalamount" id="inputtotalAmount" placeholder="Total Amount"
+            [(ngModel)]="enterBillAmount">
+          <button type="submit" class="btn btn-primary btn-margin btn-block">Submit</button>
+          <button id="btnProductReset" type="button" class="btn btn-primary btn-margin btn-block" name="Reset"
+            (click)="resetForm(billForm)">Reset</button>
+        </div>
       </div>
     </form>
   </div>
+  <div class="card-footer"></div>
 </div>

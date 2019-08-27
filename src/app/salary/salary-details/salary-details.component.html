@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-6">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Earnings</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let earn of salaryElement.earnings">
+          <td>{{ earn.type }}</td>
+          <td>{{ earn.value }}</td>
+        </tr>
+      </tbody>
+      <tfoot class="thead-light">
+        <tr>
+          <th>Total Earnings</th>
+          <th>{{ salaryElement.earningsamount }}</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="col-6">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Deductions</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dedu of salaryElement.deductions">
+          <td>{{ dedu.type }}</td>
+          <td>{{ dedu.value }}</td>
+        </tr>
+      </tbody>
+      <tfoot class="thead-light">
+        <tr>
+          <th>Total Deductions</th>
+          <th>{{ salaryElement.deductionsamount }}</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 text-center">
+    <h5>Total Pay - {{ salaryElement.netamount }}</h5>
+  </div>
+</div>

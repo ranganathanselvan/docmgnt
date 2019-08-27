@@ -5,26 +5,30 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BillCreateComponent } from './bill/bill-create/bill-create.component';
+import { BillViewComponent } from './bill/bill-view/bill-view.component';
 import { HeaderComponent } from './header/header.component';
-import { CreateIncomeComponent } from './income/income-create/income-create.component';
-import { ExpenseCreateComponent } from './expense/expense-create/expense-create.component';
-import { NavBarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
+import { CreateTransactionComponent } from './transaction/transaction-create.component';
+import { SalaryCreateComponent } from './salary/salary-create/salary-create.component';
+import { SalaryDetailsComponent } from './salary/salary-details/salary-details.component';
+import { SalaryViewComponent } from './salary/salary-view/salary-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    NavBarComponent,
     BillCreateComponent,
-    CreateIncomeComponent,
-    ExpenseCreateComponent,
-    HomeComponent
+    BillViewComponent,
+    HomeComponent,
+    CreateTransactionComponent,
+    SalaryCreateComponent,
+    SalaryDetailsComponent,
+    SalaryViewComponent
   ],
   imports: [
     BrowserModule,
@@ -32,13 +36,17 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'Bill', component: BillCreateComponent},
-      {path: 'Income', component: CreateIncomeComponent},
-      {path: 'Expense', component: ExpenseCreateComponent}
+      { path: '', component: HomeComponent },
+      { path: 'Bill', component: BillCreateComponent },
+      { path: 'Bill/show', component: BillViewComponent },
+      { path: 'Transaction', component: CreateTransactionComponent },
+      { path: 'Salary', component: SalaryCreateComponent },
+      { path: 'Salary/view', component: SalaryViewComponent },
+      { path: 'Salary/details', component: SalaryDetailsComponent },
     ]),
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

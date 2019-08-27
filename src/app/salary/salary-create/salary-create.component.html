@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="card-header">
+    <nav class="nav">
+      <a class="nav-link" routerLink="/Salary">Salary</a>
+      <a class="nav-link" routerLink="/Salary/view">View Salary</a>
+    </nav>
+  </div>
+  <div class="card-body">
+    <form #salaryForm="ngForm" (submit)="onSubmit(salaryForm)">
+
+      <div class="form-row">
+        <div class="form-group col-3"><h5>Month</h5></div>
+        <div class="form-group col-3">
+          <select class="form-control form-control-sm" id="SelectMonth" [(ngModel)]="selectedMonth"
+            [ngModelOptions]="{standalone: true}">
+            <option selected>---Select Month---</option>
+            <option *ngFor="let month of monthList" [value]="month">{{month}}</option>
+          </select>
+        </div>
+        <div class="form-group col-3"><h5>Year</h5></div>
+        <div class="form-group col-3">
+          <select class="form-control form-control-sm" id="SelectYear" [(ngModel)]="selectedYear"
+            [ngModelOptions]="{standalone: true}">
+            <option selected>---Select Year---</option>
+            <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-6 earnings">
+          <fieldset>
+            <legend>Earnings</legend>
+            <div *ngFor="let earn of earnings; let i = index;">
+              <div class="col-7 float-left">
+                <h5><label for="earnings_{{i}}">{{ earn.type }}</label></h5>
+              </div>
+              <div class="col-4 float-right"><input type="number" id="earnings_{{i}}" name="earnings_{{i}}"
+                  class="form-control form-control-sm" (change)="calculateEarnings()" placeholder="{{earn.type}}"
+                  [(ngModel)]="earn.value"></div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-group col-6 deductions">
+          <fieldset>
+            <legend>Deductions</legend>
+            <div *ngFor="let det of deductions; let j = index;">
+              <div class="col-7 float-left">
+                <h5><label for="deductions_{{j}}">{{ det.type }}</label></h5>
+              </div>
+              <div class="col-4 float-right"><input type="number" id="deduction_{{j}}" name="deduction_{{j}}"
+                  class="form-control form-control-sm" (change)="calculateDeductions()" placeholder="{{det.type}}"
+                  [(ngModel)]="det.value"></div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-4"><input type="number" name="inputEarnings" class="form-control form-control-sm"
+            placeholder="earnings amount" [(ngModel)]="totalEarnings"></div>
+        <div class="form-group col-4"><input type="number" name="inputDeductions" class="form-control form-control-sm"
+            placeholder="deduction amount" [(ngModel)]="totalDeductions"></div>
+        <div class="form-group col-4"><input type="number" name="inputTotalAmount" class="form-control form-control-sm"
+            placeholder="Net amount" [(ngModel)]="totalAmount">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-12">
+          <button type="button" class="btn btn-primary" name="Submit" (click)="onSubmit(salaryForm)">Submit</button>
+          <button type="button" class="btn btn-primary" name="Reset" (click)="resetForm(salaryForm)">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer"></div>
+</div>
