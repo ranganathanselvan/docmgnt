@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Transaction } from '../shared/transaction/transaction.model';
 import { TransactionService } from '../shared/transaction/transaction.service';
+import { Custom } from '../shared/custom.model';
 declare var $: any;  // Declaring $ as a variable so that we can use it to access jQuery
 
 @Component({
@@ -14,9 +15,11 @@ declare var $: any;  // Declaring $ as a variable so that we can use it to acces
 
 export class CreateTransactionComponent implements OnInit {
 
-  transactionTypes = ['Expense', 'Income'];
-  selectedTransactionType = '';
-  enteredTransDesc = '';
+  custom: Custom = new Custom();
+  transactionTypes = this.custom.transactionTypes;
+  transactionDesc = this.custom.transactionDesc;
+  selectedTransactionType = '---Select Transaction Type---';
+  enteredTransDesc = '---Select Description---';
   enteredTransDate = '';
   enteredTransAmount = '';
   enteredTransComment = '';
@@ -57,6 +60,7 @@ export class CreateTransactionComponent implements OnInit {
   }
 
   onSubmit(form?: NgForm) {
+
     const inDate = this.TransDate.nativeElement.value;
     const date = inDate.split('/');
 

@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header">Create Income</div>
+  <div class="card-header">Transaction</div>
   <div class="card-body">
     <form #transactionForm="ngForm" (submit)="onSubmit(transactionForm)">
       <div class="form-row">
@@ -7,12 +7,18 @@
           <div class="form-group">
             <select class="form-control" id="TransactionType" [(ngModel)]="selectedTransactionType"
               [ngModelOptions]="{standalone: true}">
+              <option value="---Select Transaction Type---" selected data-default>---Select Transaction Type---</option>
               <option *ngFor="let trans of transactionTypes.sort()" [value]="trans">{{trans}}</option>
             </select>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="inputTransDesc" name="TransDesc"
-              [(ngModel)]="enteredTransDesc" placeholder="Transaction Description">
+            <select class="form-control" id="selectTransDesc" [(ngModel)]="enteredTransDesc"
+              [ngModelOptions]="{standalone: true}">
+              <option value="---Select Description---" selected data-default>---Select Description---</option>
+              <option *ngFor="let desc of transactionDesc.sort()" [value]="desc">{{desc}}</option>
+            </select>
+            <!--<input type="text" class="form-control" id="inputTransDesc" name="TransDesc" [(ngModel)]="enteredTransDesc"
+              placeholder="Transaction Description">-->
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="inputTransDate" #TransDate name="TransDate"

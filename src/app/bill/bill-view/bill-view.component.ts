@@ -7,7 +7,15 @@ import { Bill } from '../../shared/bill.model';
 @Component({
   selector: 'app-bill-view',
   templateUrl: './bill-view.component.html',
-  styleUrls: ['./bill-view.component.css'],
+  // styleUrls: ['./bill-view.component.css'],
+  styles: [`
+    img:hover{
+      background-color: #D6EAF8;
+    }
+    img:active{
+      background-color: #AED6F1;
+    }
+  `],
   providers: [BillService]
 })
 export class BillViewComponent implements OnInit {
