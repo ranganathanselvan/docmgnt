@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { BillService } from '../../shared/bill.service';
 import { Bill } from '../../shared/bill.model';
-import { Custom } from '../../shared/custom.model';
+import { CustomUtilityService } from 'src/app/shared/custom-utility.service.service';
 
 declare var $: any;  // Declaring $ as a variable so that we can use it to access jQuery
 
@@ -35,12 +35,14 @@ export class BillCreateComponent implements OnInit {
   enterBillAmount = '';
   enteredProduct = [];
   billObj: Bill = new Bill();
-  custom: Custom = new Custom();
-  billTypes = this.custom.catagory;
-  paymentMode = this.custom.paymentMode;
+  billTypes = this.customUtilityService.catagory;
+  paymentMode = this.customUtilityService.paymentMode;
   @ViewChild('purchaseDate', { static: false }) purchaseDate: ElementRef;
 
-  constructor(private billService: BillService, private toastr: ToastrService) { }
+  constructor(
+    private billService: BillService,
+    private toastr: ToastrService,
+    private customUtilityService: CustomUtilityService) { }
 
   ngOnInit(): void {
     $(

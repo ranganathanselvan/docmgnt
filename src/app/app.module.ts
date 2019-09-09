@@ -17,6 +17,8 @@ import { CreateTransactionComponent } from './transaction/transaction-create.com
 import { SalaryCreateComponent } from './salary/salary-create/salary-create.component';
 import { SalaryDetailsComponent } from './salary/salary-details/salary-details.component';
 import { SalaryViewComponent } from './salary/salary-view/salary-view.component';
+import { CustomUtilityService } from './shared/custom-utility.service.service';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import { SalaryViewComponent } from './salary/salary-view/salary-view.component'
     ToastrModule.forRoot(), // ToastrModule added
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [CustomUtilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

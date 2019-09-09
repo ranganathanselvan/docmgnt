@@ -1,4 +1,12 @@
-export class Custom {
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomUtilityService {
+
+  constructor() { }
+
   catagory: string[] =
     [
       'Medical',
@@ -35,6 +43,10 @@ export class Custom {
       'Transport',
       'Hotel',
       'Entertainment',
-      'Dresses'
+      'Dresses',
+      'Mobile',
+      'House Rent',
+      'Credit Card',
+      'Savings'
     ];
 }
