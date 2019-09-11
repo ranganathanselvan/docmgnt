@@ -1,0 +1,45 @@
+<div class="dashboard-bg">
+  <div class="row">
+    <div class="col-12">
+      <h5 class="text-left">Dashboard</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card widget-flat">
+        <div class="card-body">
+          <div class="float-right">
+            <i class="mdi mdi-account-multiple widget-icon"></i>
+          </div>
+          <h5 class="text-success font-weight-normal mt-0" title="Number of Customers">Expense this month</h5>
+          <h3 class="text-success mt-3 mb-3">₹36,254</h3>
+        </div> <!-- end card-body-->
+      </div> <!-- end card-->
+    </div> <!-- end col-->
+
+    <div class="col-md-3">
+      <div class="card widget-flat">
+        <div class="card-body">
+          <div class="float-right">
+            <i class="mdi mdi-cart-plus widget-icon"></i>
+          </div>
+          <h5 class="text-primary font-weight-normal mt-0" title="Number of Orders">Orders</h5>
+          <h3 class="text-primary mt-3 mb-3">₹5,543</h3>
+        </div> <!-- end card-body-->
+      </div> <!-- end card-->
+    </div> <!-- end col-->
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card widget-flat">
+        <div class="card-body">
+          <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+              [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+          </div>
+        </div> <!-- end card-body-->
+      </div> <!-- end card-->
+    </div>
+  </div>
+</div>
