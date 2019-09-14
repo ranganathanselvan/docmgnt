@@ -1,5 +1,8 @@
 <div class="card">
-  <div class="card-header">Transaction</div>
+  <div class="card-header"><nav class="nav">
+    <a class="nav-link" routerLink="/transaction">Transaction</a>
+    <a class="nav-link" routerLink="/transaction/dashboard">Dashboard</a>
+  </nav></div>
   <div class="card-body">
     <form #transactionForm="ngForm" (submit)="onSubmit(transactionForm)">
       <div class="form-row">

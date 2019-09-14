@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Transaction } from '../shared/transaction/transaction.model';
 import { TransactionService } from '../shared/transaction/transaction.service';
-import { Custom } from '../shared/custom.model';
+import { CustomUtilityService } from '../shared/custom-utility.service.service';
 declare var $: any;  // Declaring $ as a variable so that we can use it to access jQuery
 
 @Component({
@@ -15,9 +15,8 @@ declare var $: any;  // Declaring $ as a variable so that we can use it to acces
 
 export class CreateTransactionComponent implements OnInit {
 
-  custom: Custom = new Custom();
-  transactionTypes = this.custom.transactionTypes;
-  transactionDesc = this.custom.transactionDesc;
+  transactionTypes = this.customUtilityService.transactionTypes;
+  transactionDesc = this.customUtilityService.transactionDesc;
   selectedTransactionType = '---Select Transaction Type---';
   enteredTransDesc = '---Select Description---';
   enteredTransDate = '';
@@ -29,7 +28,10 @@ export class CreateTransactionComponent implements OnInit {
   collection = { count: 0, data: [] };
 
   @ViewChild('TransDate', { static: false }) TransDate: ElementRef;
-  constructor(private transService: TransactionService, private toastr: ToastrService) { }
+  constructor(
+    private transService: TransactionService,
+    private toastr: ToastrService,
+    private customUtilityService: CustomUtilityService) { }
 
   ngOnInit() {
     $(
@@ -74,6 +76,7 @@ export class CreateTransactionComponent implements OnInit {
     } else if (this.transactionTypes[1] === this.selectedTransactionType) {
       this.transObj.balance = Number(this.transactionData[this.transactionData.length - 1].balance) + Number(this.enteredTransAmount);
     }
+    this.transObj.balance = Number(this.transObj.balance.toFixed(2));
 
     this.transService.postTransaction(this.transObj).subscribe((res) => {
       this.resetForm(form);
