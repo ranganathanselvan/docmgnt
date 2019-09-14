@@ -22,7 +22,14 @@ export class TransactionService {
     return this.http.get(this.baseURL);
   }
 
+  getByMonthYear(month: number, year: number) {
+    return this.http.get(this.baseURL + '/monthlyexpense/' + month + '/' + year);
+  }
+
+
+
   putTransactionById(obj: Transaction, id: string) {
     return this.http.put(this.baseURL + '?id=' + id, obj);
   }
+
 }
