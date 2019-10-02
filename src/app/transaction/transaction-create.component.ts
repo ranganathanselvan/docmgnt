@@ -68,7 +68,7 @@ export class CreateTransactionComponent implements OnInit {
 
     this.transObj.transactiontype = this.selectedTransactionType;
     this.transObj.description = this.enteredTransDesc;
-    this.transObj.date = new Date(date[1] + '/' + date[0] + '/' + date[2]);
+    this.transObj.date = new Date(date[1] + '/' + date[0] + '/' + date[2] + ' 12:00:00');
     this.transObj.amount = Number(this.enteredTransAmount);
     this.transObj.comment = this.enteredTransComment;
     if (this.transactionTypes[0] === this.selectedTransactionType) {

@@ -26,6 +26,9 @@ export class TransactionService {
     return this.http.get(this.baseURL + '/monthlyexpense/' + month + '/' + year);
   }
 
+  getExpenseDetailsByDesc(month: number, year: number, desc: string) {
+    return this.http.get(this.baseURL + '/getExpenseDetailsByDesc/' + month + '/' + year + '/' + desc);
+  }
 
 
   putTransactionById(obj: Transaction, id: string) {
