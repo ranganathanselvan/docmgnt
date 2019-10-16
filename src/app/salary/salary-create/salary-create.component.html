@@ -9,68 +9,110 @@
     <form #salaryForm="ngForm" (submit)="onSubmit(salaryForm)">
 
       <div class="form-row">
-        <div class="form-group col-3"><h5>Month</h5></div>
-        <div class="form-group col-3">
-          <select class="form-control form-control-sm" id="SelectMonth" [(ngModel)]="selectedMonth"
-            [ngModelOptions]="{standalone: true}">
-            <option selected>---Select Month---</option>
-            <option *ngFor="let month of monthList" [value]="month">{{month}}</option>
-          </select>
+        <div class="form-group col-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="selectMonth">Month</label>
+            </div>
+            <select class="custom-select" id="SelectMonth" [(ngModel)]="selectedMonth"
+              [ngModelOptions]="{standalone: true}">
+              <option selected>---Select Month---</option>
+              <option *ngFor="let month of monthList" [value]="month">{{month}}</option>
+            </select>
+          </div>
         </div>
-        <div class="form-group col-3"><h5>Year</h5></div>
-        <div class="form-group col-3">
-          <select class="form-control form-control-sm" id="SelectYear" [(ngModel)]="selectedYear"
-            [ngModelOptions]="{standalone: true}">
-            <option selected>---Select Year---</option>
-            <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
-          </select>
+
+        <div class="form-group col-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="SelectYear">Year</label>
+            </div>
+            <select class="custom-select" id="SelectYear" [(ngModel)]="selectedYear"
+              [ngModelOptions]="{standalone: true}">
+              <option selected>---Select Year---</option>
+              <option *ngFor="let year of yearList" [value]="year">{{year}}</option>
+            </select>
+          </div>
         </div>
       </div>
 
       <div class="form-row">
-        <div class="form-group col-6 earnings">
+        <div class="form-group col-6">
           <fieldset>
-            <legend>Earnings</legend>
-            <div *ngFor="let earn of earnings; let i = index;">
-              <div class="col-7 float-left">
-                <h5><label for="earnings_{{i}}">{{ earn.type }}</label></h5>
-              </div>
-              <div class="col-4 float-right"><input type="number" id="earnings_{{i}}" name="earnings_{{i}}"
-                  class="form-control form-control-sm" (change)="calculateEarnings()" placeholder="{{earn.type}}"
-                  [(ngModel)]="earn.value"></div>
+            <div class="p-1 mb-1 bg-success text-white rounded" style="text-align: center;">
+              <legend class="col-form-label">Earnings</legend>
+            </div>
+            <div>
+              <table>
+                <tbody>
+                  <tr class="d-flex" *ngFor="let earn of earnings; let i = index;">
+                    <td class="col-sm-8">{{ earn.type }}</td>
+                    <td class="col-sm-4"><input type="number" id="earnings_{{i}}" name="earnings_{{i}}"
+                        class="form-control form-control-sm" (change)="calculateEarnings()" placeholder="{{earn.type}}"
+                        [(ngModel)]="earn.value"></td>
+                  </tr>
+                </tbody>
+              </table>
+
             </div>
           </fieldset>
         </div>
-        <div class="form-group col-6 deductions">
+        <div class="form-group col-6">
           <fieldset>
-            <legend>Deductions</legend>
-            <div *ngFor="let det of deductions; let j = index;">
-              <div class="col-7 float-left">
-                <h5><label for="deductions_{{j}}">{{ det.type }}</label></h5>
-              </div>
-              <div class="col-4 float-right"><input type="number" id="deduction_{{j}}" name="deduction_{{j}}"
-                  class="form-control form-control-sm" (change)="calculateDeductions()" placeholder="{{det.type}}"
-                  [(ngModel)]="det.value"></div>
+            <div class="p-1 mb-1 bg-danger text-white rounded">
+              <legend class="col-form-label">Deductions</legend>
             </div>
+            <table>
+              <tbody>
+                <tr class="d-flex" *ngFor="let det of deductions; let j = index;">
+                  <td class="col-sm-8">{{ det.type }}</td>
+                  <td class="col-sm-4"><input type="number" id="deduction_{{j}}" name="deduction_{{j}}"
+                      class="form-control form-control-sm" (change)="calculateDeductions()" placeholder="{{det.type}}"
+                      [(ngModel)]="det.value"></td>
+                </tr>
+              </tbody>
+            </table>
           </fieldset>
         </div>
       </div>
-
       <div class="form-row">
-        <div class="form-group col-4"><input type="number" name="inputEarnings" class="form-control form-control-sm"
-            placeholder="earnings amount" [(ngModel)]="totalEarnings"></div>
-        <div class="form-group col-4"><input type="number" name="inputDeductions" class="form-control form-control-sm"
-            placeholder="deduction amount" [(ngModel)]="totalDeductions"></div>
-        <div class="form-group col-4"><input type="number" name="inputTotalAmount" class="form-control form-control-sm"
-            placeholder="Net amount" [(ngModel)]="totalAmount">
+        <div class="form-group col-6">
+          <div class="p-1 mb-1 bg-success text-white rounded">
+            <input type="number" name="inputEarnings" class="form-control form-control-sm text-center"
+              style="width: 100px;" placeholder="earnings amount" [(ngModel)]="totalEarnings">
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <div class="p-1 mb-1 bg-danger text-white rounded">
+            <input type="number" name="inputDeductions" class="form-control form-control-sm text-center"
+              style="width: 100px;" placeholder="deduction amount" [(ngModel)]="totalDeductions">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-6"></div>
+        <div class="form-group col-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="grossSalary">Gross Salary</span>
+            </div>
+            <input type="number" name="inputTotalAmount" class="form-control form-control-sm" placeholder="Net amount"
+              [(ngModel)]="totalAmount" aria-describedby="grossSalary">
+          </div>
         </div>
       </div>
 
       <div class="form-row">
-        <div class="form-group col-12">
+        <div class="form-group col-2"></div>
+        <div class="form-group col-2"></div>
+        <div class="form-group col-2 text-center">
           <button type="button" class="btn btn-primary" name="Submit" (click)="onSubmit(salaryForm)">Submit</button>
+        </div>
+        <div class="form-group col-2 text-center">
           <button type="button" class="btn btn-primary" name="Reset" (click)="resetForm(salaryForm)">Clear</button>
         </div>
+        <div class="form-group col-2"></div>
+        <div class="form-group col-2"></div>
       </div>
     </form>
   </div>

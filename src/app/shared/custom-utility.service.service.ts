@@ -7,6 +7,9 @@ export class CustomUtilityService {
 
   constructor() { }
 
+  baseURL = 'https://quiet-lake-20402.herokuapp.com';
+  // baseURL = 'http://localhost:3000';
+
   catagory: string[] =
     [
       'Medical',
