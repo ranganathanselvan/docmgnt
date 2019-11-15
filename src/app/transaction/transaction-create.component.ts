@@ -10,6 +10,14 @@ declare var $: any;  // Declaring $ as a variable so that we can use it to acces
 @Component({
   selector: 'app-create-transaction',
   templateUrl: './transaction-create.component.html',
+  styles: [`
+    .bg-violet {
+      background-color: #563d7c;
+    }
+    .bg-lightgrey {
+      background-color: #D3D3D3;
+    }
+  `],
   providers: [TransactionService]
 })
 
@@ -24,8 +32,9 @@ export class CreateTransactionComponent implements OnInit {
   enteredTransComment = '';
   transactionData = new Array();
   transObj: Transaction = new Transaction();
-  config: any;
-  collection = { count: 0, data: [] };
+  collection: any[];
+  p = 1;
+  count = 5;
 
   @ViewChild('TransDate', { static: false }) TransDate: ElementRef;
   constructor(
@@ -45,20 +54,14 @@ export class CreateTransactionComponent implements OnInit {
   loadAllTrans() {
     this.transService.getAllTransaction().subscribe((res) => {
       this.transactionData = Object.keys(res).map(i => res[i]);
-      this.collection.count = this.transactionData.length;
-      this.collection.data = this.transactionData;
+      this.collection = this.transactionData;
 
-      this.config = {
-        itemsPerPage: 5,
-        currentPage: 1,
-        totalItems: this.collection.count
-      };
       console.log(JSON.stringify(res));
     });
   }
 
   pageChanged(event) {
-    this.config.currentPage = event;
+    this.p = event;
   }
 
   onSubmit(form?: NgForm) {
