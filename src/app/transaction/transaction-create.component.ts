@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Transaction } from '../shared/transaction/transaction.model';
 import { TransactionService } from '../shared/transaction/transaction.service';
 import { CustomUtilityService } from '../shared/custom-utility.service.service';
-declare var $: any;  // Declaring $ as a variable so that we can use it to access jQuery
+declare var $: any;  // Declaring $ as a variable so that we can use it to access jQuery // #D3D3D3;
 
 @Component({
   selector: 'app-create-transaction',
@@ -15,7 +15,7 @@ declare var $: any;  // Declaring $ as a variable so that we can use it to acces
       background-color: #563d7c;
     }
     .bg-lightgrey {
-      background-color: #D3D3D3;
+      background-color: #eaecf4;
     }
   `],
   providers: [TransactionService]

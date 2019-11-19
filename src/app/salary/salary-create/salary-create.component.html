@@ -1,9 +1,13 @@
 <div class="card">
   <div class="card-header">
-    <nav class="nav">
-      <a class="nav-link" routerLink="/Salary">Salary</a>
-      <a class="nav-link" routerLink="/Salary/view">View Salary</a>
-    </nav>
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/Salary">Salary</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Salary/view">View Salary</a>
+      </li>
+    </ul>
   </div>
   <div class="card-body">
     <form #salaryForm="ngForm" (submit)="onSubmit(salaryForm)">
