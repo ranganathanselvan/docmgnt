@@ -87,7 +87,7 @@
     <div class="col-4">
       <div class="card widget-flat">
         <div class="card-body">
-          <table class="table table-striped">
+          <table class="table table-striped table-hover">
             <thead>
               <tr>
                 <th>Description</th>
@@ -95,9 +95,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of expenseList">
-                <td>{{item._id.desc}}</td>
-                <td>{{item.total}}</td>
+              <tr *ngFor="let item of expenseList; let i = index;">
+                <td><a style="cursor: pointer" (click)="onViewDetails(i)">{{item._id.desc}}</a></td>
+                <td><a style="cursor: pointer" (click)="onViewDetails(i)">{{item.total}}</a></td>
               </tr>
             </tbody>
           </table>
@@ -105,7 +105,28 @@
       </div>
     </div>
     <div class="col-8">
-
+      <div class="card widget-flat">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of expenseDetailList">
+                <td>{{item.description}}</td>
+                <td>{{item.date | date: 'dd/MM/yyyy'}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.comment}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

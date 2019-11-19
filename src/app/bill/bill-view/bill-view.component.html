@@ -1,9 +1,13 @@
 <div class="card">
   <div class="card-header">
-    <nav class="nav">
-      <a class="nav-link" routerLink="/Bill">Create Bill</a>
-      <a class="nav-link" routerLink="/Bill/show">Show Bill</a>
-    </nav>
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Bill">Create Bill</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/Bill/show">Show Bill</a>
+      </li>
+    </ul>
   </div>
   <div class="card-body">
     <table class="table">
@@ -54,7 +58,7 @@
       </div>
       <div class="modal-body">
         <div>
-            <h6>Total Amount: {{selectedBill.totalamount}}</h6>
+          <h6>Total Amount: {{selectedBill.totalamount}}</h6>
         </div>
         <table class="table">
           <thead class="table-light">
@@ -98,7 +102,7 @@
               <td><input type="text" name="productQuantity" class="form-control" [(ngModel)]="enteredQuantity"
                   placeholder="Quantity" (ngModelChange)="calculateProductTotalPrice()"></td>
               <td><input type="text" name="totalPrice" class="form-control" [(ngModel)]="enteredTotalPrice"
-                  placeholder="Total Price" ></td>
+                  placeholder="Total Price"></td>
               <td><a (click)="addBillItem()"><img src="../../../assets/img/icon_blue_add.png" width="20"
                     height="20" /></a></td>
             </tr>

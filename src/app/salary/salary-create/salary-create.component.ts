@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { SalaryService } from '../../shared/salary/salary.service';
 import { Salary } from '../../shared/salary/salary.model';
+import { CustomUtilityService } from 'src/app/shared/custom-utility.service.service';
 
 @Component({
   selector: 'app-salary-create',
@@ -13,18 +14,21 @@ import { Salary } from '../../shared/salary/salary.model';
 
 export class SalaryCreateComponent implements OnInit {
 
-  monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  yearList = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+  monthList = this.customUtilityService.month;
+  yearList = this.customUtilityService.year;
   earnings = [];
   deductions = [];
-  selectedMonth = '';
+  selectedMonth = '---Select Month---';
   selectedYear = 0;
   totalEarnings = 0;
   totalDeductions = 0;
   totalAmount = 0;
   salaryObj: Salary = new Salary();
 
-  constructor(private salaryService: SalaryService, private toastr: ToastrService) { }
+  constructor(
+    private salaryService: SalaryService,
+    private toastr: ToastrService,
+    private customUtilityService: CustomUtilityService) { }
 
   ngOnInit(): void {
     // Called after the constructor, initializing input properties, and the first call to ngOnChanges.

@@ -40,6 +40,7 @@ export class TransactionDashboardComponent implements OnInit {
   /* -------------END Chart Variables and Function---------------*/
 
   expenseList: any[] = [];
+  expenseDetailList: any[] = [];
   monthList: string[] = this.customUtilityService.month;
   yearList: number[] = this.customUtilityService.year;
   selectedMonth = 'Choose...';
@@ -118,4 +119,12 @@ export class TransactionDashboardComponent implements OnInit {
       Number(this.selectedYear));
   }
 
+  onViewDetails(index: number) {
+    this.transService.getExpenseDetailsByDesc(
+      this.customUtilityService.monthByLiteral[this.selectedMonth],
+      Number(this.selectedYear),
+      this.expenseList[index]._id.desc).subscribe((res) => {
+        this.expenseDetailList = Object.keys(res).map(i => res[i]);
+      });
+  }
 }
