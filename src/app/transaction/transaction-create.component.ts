@@ -75,9 +75,9 @@ export class CreateTransactionComponent implements OnInit {
     this.transObj.amount = Number(this.enteredTransAmount);
     this.transObj.comment = this.enteredTransComment;
     if (this.transactionTypes[0] === this.selectedTransactionType) {
-      this.transObj.balance = Number(this.transactionData[this.transactionData.length - 1].balance) - Number(this.enteredTransAmount);
+      this.transObj.balance = Number(this.transactionData[0].balance) - Number(this.enteredTransAmount);
     } else if (this.transactionTypes[1] === this.selectedTransactionType) {
-      this.transObj.balance = Number(this.transactionData[this.transactionData.length - 1].balance) + Number(this.enteredTransAmount);
+      this.transObj.balance = Number(this.transactionData[0].balance) + Number(this.enteredTransAmount);
     }
     this.transObj.balance = Number(this.transObj.balance.toFixed(2));
 
